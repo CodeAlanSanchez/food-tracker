@@ -11,7 +11,8 @@ const MealTime = ({ time, items }) => (
   <Paper>
     <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
       <Typography variant="h4">
-        {`${time} (${items.reduce((prev, curr) => prev + curr.calories, 0)})`}
+        {/* {`${time} (${items.reduce((prev, curr) => prev + curr.calories, 0)})`} */}
+        {time}
       </Typography>
       <IconButton color="primary">
         <AddCircle />
