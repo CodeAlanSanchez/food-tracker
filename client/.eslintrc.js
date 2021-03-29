@@ -24,5 +24,6 @@ module.exports = {
     ],
     'import/prefer-default-export': 'off',
     'no-underscore-dangle': 'off',
+    'react/prop-types': 'off',
   },
 };
