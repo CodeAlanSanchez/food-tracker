@@ -14,7 +14,7 @@ const Tracker = () => {
       <Container maxWidth="xl">
         <Box mt={3}>
           <Typography variant="h2" align="center" gutterBottom>
-            Food Tracker
+            Log
           </Typography>
         </Box>
         <Box className={classes.tracker}>
