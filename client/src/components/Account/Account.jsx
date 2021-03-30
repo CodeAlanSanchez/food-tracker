@@ -1,4 +1,5 @@
-import { Typography, Container } from '@material-ui/core';
+import { Box, Typography, Container } from '@material-ui/core';
+
 import React from 'react';
 import useStyles from './styles';
 
@@ -10,11 +11,13 @@ const Account = ({ user }) => {
       <Typography variant="h2" gutterBottom>
         Account
       </Typography>
-      <Typography variant="h6">
-        {user?.name}
+      <Box mt={5} />
+      <Typography variant="h5" color="textSecondary" gutterBottom>
+        {`Name: ${user?.name}`}
       </Typography>
-      <Typography variant="h6">
-        {user?.email}
+      <Box mt={5} />
+      <Typography variant="h5" color="textSecondary">
+        {`Email: ${user?.email}`}
       </Typography>
     </Container>
   );
