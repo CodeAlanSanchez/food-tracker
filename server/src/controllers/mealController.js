@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Meal from '../models/mealModel';
+import Meal from '../models/mealModel.js';
 
 export const getMeals = async (req, res) => {
   try {

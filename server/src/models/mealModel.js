@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const MealSchema = mongoose.Schema({
+const MealSchema = new mongoose.Schema({
   name: String,
   category: String,
   amount: String,
@@ -11,6 +11,6 @@ const MealSchema = mongoose.Schema({
   fiber: Number,
 });
 
-const Meal = mongoose.Model(MealSchema, 'meal');
+const Meal = mongoose.model('meal', MealSchema);
 
 export default Meal;
