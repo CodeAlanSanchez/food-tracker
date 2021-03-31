@@ -10,7 +10,7 @@ const Meal = ({ meal }) => {
   const classes = useStyles();
 
   return (
-    <Grid item xs={12} sm={4} md={3}>
+    <Grid item xs={12} sm={6} md={4}>
       <Card variant="contained" align="left" p={2}>
         <Box display="flex" flexDirection="column" alignItems="spaceBetween" width={210}>
           <CardContent>
