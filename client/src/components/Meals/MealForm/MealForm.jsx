@@ -3,8 +3,11 @@ import {
   Typography, TextField, Paper, Box, Button,
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createMeal } from '../../../actions/mealActions';
 
 const MealForm = () => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: '', amount: '', category: '', calories: '', protein: '', carbohydrates: '', fat: '', fiber: '',
   });
@@ -25,10 +28,16 @@ const MealForm = () => {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    clear();
+    dispatch(createMeal(formData));
+  };
+
   return (
     <Paper>
       <Box p={2}>
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <Typography variant="h5" align="center">
             Add Meal
           </Typography>
@@ -39,6 +48,7 @@ const MealForm = () => {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             fullWidth
+            required
           />
           <TextField
             name="amount"
@@ -47,6 +57,7 @@ const MealForm = () => {
             value={formData.amount}
             onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
             fullWidth
+            required
           />
           <TextField
             name="category"
@@ -55,6 +66,7 @@ const MealForm = () => {
             value={formData.category}
             onChange={(e) => setFormData({ ...formData, category: e.target.value })}
             fullWidth
+            required
           />
           <TextField
             name="calories"
@@ -63,6 +75,7 @@ const MealForm = () => {
             value={formData.calories}
             onChange={(e) => handleNumberChange(e)}
             fullWidth
+            required
           />
           <Box mt={3} />
           <Typography variant="body1" align="center">
@@ -75,6 +88,7 @@ const MealForm = () => {
             value={formData.protein}
             onChange={(e) => handleNumberChange(e)}
             fullWidth
+            required
           />
           <TextField
             name="carbohydrates"
@@ -83,6 +97,7 @@ const MealForm = () => {
             value={formData.carbohydrates}
             onChange={(e) => handleNumberChange(e)}
             fullWidth
+            required
           />
           <TextField
             name="fat"
@@ -91,6 +106,7 @@ const MealForm = () => {
             value={formData.fat}
             onChange={(e) => handleNumberChange(e)}
             fullWidth
+            required
           />
           <TextField
             name="fiber"
@@ -99,6 +115,7 @@ const MealForm = () => {
             value={formData.fiber}
             onChange={(e) => handleNumberChange(e)}
             fullWidth
+            required
           />
           <Box mt={1} display="flex" justifyContent="space-between" p={2}>
             <Button type="submit" size="small" variant="contained" color="primary">Submit</Button>
