@@ -5,6 +5,7 @@ import {
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMeals } from '../../actions/mealActions';
+import { getTime } from '../../actions/timeActions';
 import Meal from './Meal/Meal';
 import MealForm from './MealForm/MealForm';
 import useStyles from './styles';
@@ -12,10 +13,12 @@ import useStyles from './styles';
 const Meals = () => {
   const classes = useStyles();
   const meals = useSelector((state) => state.meals);
+  const time = useSelector((state) => state.time);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getMeals());
+    dispatch(getTime());
   }, [dispatch]);
 
   return (
@@ -32,7 +35,7 @@ const Meals = () => {
           </Grid>
           <Grid item xs={12} sm={8} md={9}>
             <Grid container spacing={3}>
-              {meals.map((meal) => <Meal key={meal._id} meal={meal} />)}
+              {meals.map((meal) => <Meal key={meal._id} meal={meal} time={time} />)}
             </Grid>
           </Grid>
         </Grid>

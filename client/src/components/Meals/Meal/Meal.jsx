@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { deleteMeal } from '../../../api';
 import useStyles from './styles';
 
-const Meal = ({ meal }) => {
+const Meal = ({ meal, time }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -46,6 +46,7 @@ const Meal = ({ meal }) => {
                 id="category"
                 label="Time"
                 className={classes.select}
+                value={time}
               >
                 <MenuItem value="Breakfast">Breakfast</MenuItem>
                 <MenuItem value="Lunch">Lunch</MenuItem>
@@ -53,8 +54,9 @@ const Meal = ({ meal }) => {
                 <MenuItem value="Snacks">Snacks</MenuItem>
               </Select>
               <Box display="flex" justifyContent="space-between">
-                <Button variant="outlined" color="primary" mt={2}>Add</Button>
-                <Button variant="text" color="primary" mt={2} onClick={() => handleDelete()}>Delete</Button>
+                <Button variant="contained" color="primary" size="small" mt={2}>Add</Button>
+                <Button variant="text" color="primary" size="small" mt={2} onClick={() => handleDelete()}>Edit</Button>
+                <Button variant="text" color="secondary" size="small" mt={2} onClick={() => handleDelete()}>Delete</Button>
               </Box>
             </FormControl>
           </CardActions>

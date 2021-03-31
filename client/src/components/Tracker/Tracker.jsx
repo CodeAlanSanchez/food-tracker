@@ -23,13 +23,7 @@ const Tracker = () => {
               <Container maxWidth="sm">
                 <MealTime
                   time="Breakfast"
-                  items={[{
-                    name: 'Apple', amount: '1 Cup', calories: 300, drink: false,
-                  }, {
-                    name: 'Potato', amount: '100g', calories: 250, drink: false,
-                  }, {
-                    name: 'Water', amount: '500ml', calories: 0, drink: true,
-                  }]}
+                  items={[]}
                 />
                 <Box mb={2} />
                 <MealTime time="Lunch" items={[]} />
