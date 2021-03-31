@@ -20,13 +20,13 @@ export const getMeal = (id) => async (dispatch) => {
   }
 };
 
-export const createMeal = (id, meal) => async (dispatch) => {
+export const createMeal = (meal) => async (dispatch) => {
   try {
-    const { data } = await api.createMeal(id, meal);
+    const { data } = await api.createMeal(meal);
 
     dispatch({ type: 'CREATE_MEAL', payload: data });
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
   }
 };
 
