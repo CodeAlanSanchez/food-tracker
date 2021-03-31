@@ -27,7 +27,7 @@ const MealTime = ({ time, items }) => (
         </ListItem>
       ) : null}
       {items.map((item) => (
-        <ListItem>
+        <ListItem key={item._id}>
           <ListItemIcon>
             {!item.drink ? (<Fastfood />) : (<LocalDrink />)}
           </ListItemIcon>
