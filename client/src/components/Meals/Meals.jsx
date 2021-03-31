@@ -2,13 +2,21 @@ import {
   Grid, Box, Grow, Container, Typography,
 } from '@material-ui/core';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMeals } from '../../actions/mealActions';
 import Meal from './Meal/Meal';
 import MealForm from './MealForm/MealForm';
 import useStyles from './styles';
 
 const Meals = () => {
   const classes = useStyles();
+  const meals = useSelector((state) => state.meals);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMeals());
+  }, [dispatch]);
 
   return (
     <Grow in>
@@ -24,9 +32,7 @@ const Meals = () => {
           </Grid>
           <Grid item xs={12} sm={8} md={9}>
             <Grid container spacing={3}>
-              {[{
-                category: 'legumes', name: 'Pinto Beans', amount: '1 Cup', calories: 175, carbohydrates: 27, protein: 5, fiber: 15, fat: 4,
-              }].map((meal) => <Meal key={meal._id} meal={meal} />)}
+              {meals.map((meal) => <Meal key={meal._id} meal={meal} />)}
             </Grid>
           </Grid>
         </Grid>
