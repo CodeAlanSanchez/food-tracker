@@ -39,7 +39,7 @@ const MealForm = () => {
       <Box p={2}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <Typography variant="h5" align="center">
-            Add Meal
+            Create Meal
           </Typography>
           <TextField
             name="name"

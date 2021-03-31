@@ -4,15 +4,22 @@ import {
   FormControl, Grid, InputLabel, MenuItem, Select, Typography,
 } from '@material-ui/core';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteMeal } from '../../../api';
 import useStyles from './styles';
 
 const Meal = ({ meal }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteMeal(meal._id));
+  };
 
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={4} md={3}>
       <Card variant="elevation" align="left" p={2}>
-        <Box display="flex" flexDirection="column" alignItems="spaceBetween" width={210}>
+        <Box display="flex" flexDirection="column" alignItems="spaceBetween" width="100%">
           <CardContent>
             <Typography variant="body1" color="textSecondary" gutterBottom>
               {meal.category}
@@ -25,10 +32,10 @@ const Meal = ({ meal }) => {
             </Box>
             <Box>
               <Typography variant="body1" color="textPrimary">{`${meal.calories} Calories`}</Typography>
-              <Typography variant="body1" color="textPrimary">{`${meal.protein} Protein`}</Typography>
-              <Typography variant="body1" color="textPrimary">{`${meal.carbohydrates} Carbohydrates`}</Typography>
-              <Typography variant="body1" color="textPrimary">{`${meal.fat} Fat`}</Typography>
-              <Typography variant="body1" color="textPrimary">{`${meal.fiber} Fiber`}</Typography>
+              <Typography variant="body1" color="textPrimary">{`${meal.protein}g Protein`}</Typography>
+              <Typography variant="body1" color="textPrimary">{`${meal.carbohydrates}g Carbohydrates`}</Typography>
+              <Typography variant="body1" color="textPrimary">{`${meal.fat}g Fat`}</Typography>
+              <Typography variant="body1" color="textPrimary">{`${meal.fiber}g Fiber`}</Typography>
             </Box>
           </CardContent>
           <CardActions>
@@ -45,7 +52,10 @@ const Meal = ({ meal }) => {
                 <MenuItem value="Dinner">Dinner</MenuItem>
                 <MenuItem value="Snacks">Snacks</MenuItem>
               </Select>
-              <Button variant="outlined" color="primary" mt={2}>Add</Button>
+              <Box display="flex" justifyContent="space-between">
+                <Button variant="outlined" color="primary" mt={2}>Add</Button>
+                <Button variant="text" color="primary" mt={2} onClick={() => handleDelete()}>Delete</Button>
+              </Box>
             </FormControl>
           </CardActions>
         </Box>
