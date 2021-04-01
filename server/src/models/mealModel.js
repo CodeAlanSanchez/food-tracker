@@ -11,6 +11,4 @@ const MealSchema = new mongoose.Schema({
   fiber: Number,
 });
 
-const Meal = mongoose.model('meal', MealSchema);
-
-export default Meal;
+export default mongoose.model('meal', MealSchema);
