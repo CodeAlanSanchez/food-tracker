@@ -10,11 +10,11 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchMeals = () => axios.get(`${url}/meals`);
-export const fetchMeal = (id) => axios.get(`${url}/meals/${id}`);
-export const createMeal = (meal) => axios.post(`${url}/meals`, meal);
-export const updateMeal = (id, meal) => axios.patch(`${url}/meals/${id}`, meal);
-export const deleteMeal = (id) => axios.delete(`${url}/meals/${id}`);
+export const fetchMeals = () => API.get('/meals');
+export const fetchMeal = (id) => API.get(`/meals/${id}`);
+export const createMeal = (meal) => API.post('/meals', meal);
+export const updateMeal = (id, meal) => API.patch(`$/meals/${id}`, meal);
+export const deleteMeal = (id) => API.delete(`/meals/${id}`);
 
-export const signIn = (formData) => axios.post(`${url}/auth/signin`, formData);
-export const signUp = (formData) => axios.post(`${url}/auth/signup`, formData);
+export const signIn = (formData) => API.post('/auth/signin', formData);
+export const signUp = (formData) => API.post('/auth/signup', formData);
