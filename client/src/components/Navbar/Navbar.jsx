@@ -1,5 +1,5 @@
 import {
-  Toolbar, List, ListItem, AppBar, ListItemText, Button,
+  Toolbar, List, ListItem, AppBar, ListItemText,
 } from '@material-ui/core';
 
 import React from 'react';
@@ -13,10 +13,10 @@ const Navbar = () => {
     <AppBar position="static">
       <Toolbar>
         <List className={classes.navigationBar} component="nav" color="inherit">
-          <ListItem to="/auth" component={Link}>
-            <Button color="secondary" variant="contained" size="small">
-              Signup
-            </Button>
+          <ListItem button to="/auth" component={Link}>
+            <ListItemText>
+              Sign&nbsp;in
+            </ListItemText>
           </ListItem>
           <ListItem button to="/" component={Link}>
             <ListItemText>
