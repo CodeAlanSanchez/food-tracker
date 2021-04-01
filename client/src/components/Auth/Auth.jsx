@@ -90,10 +90,15 @@ const Auth = () => {
               </Grid>
             ) : null}
           </Grid>
-          <Grid container>
+          <Grid container spacing={1}>
             <Grid item xs={12}>
               <Button size="large" color="primary" variant="contained" className={classes.submit} fullWidth>
                 {isSignup ? 'Sign up' : 'Sign in'}
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <Button size="large" color="primary" variant="outlined" fullWidth>
+                Continue as Guest
               </Button>
             </Grid>
             <Grid item xs={12}>

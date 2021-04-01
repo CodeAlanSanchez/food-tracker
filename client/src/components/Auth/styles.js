@@ -9,15 +9,12 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 0),
   },
   form: {
     marginTop: theme.spacing(2),
   },
   avatar: {
     margin: theme.spacing(1),
-  },
-  input: {
-    marginBottom: theme.spacing(0),
   },
 }));
