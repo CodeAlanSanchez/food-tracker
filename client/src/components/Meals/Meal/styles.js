@@ -5,9 +5,10 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   formControl: {
-    minWidth: '100px',
+    width: '100%',
   },
   select: {
     marginBottom: theme.spacing(1),
+    width: '100px',
   },
 }));

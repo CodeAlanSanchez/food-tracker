@@ -2,10 +2,22 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   auth: {
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(12),
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
     padding: theme.spacing(2),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  form: {
+    marginTop: theme.spacing(2),
+  },
+  avatar: {
+    margin: theme.spacing(1),
+  },
+  input: {
+    marginBottom: theme.spacing(0),
   },
 }));
