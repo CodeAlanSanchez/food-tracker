@@ -6,7 +6,7 @@ import {
 export const getMeals = () => async (dispatch) => {
   try {
     const { data } = await api.fetchMeals();
-
+    console.log(data);
     dispatch({ type: FETCH_MEALS, payload: data });
   } catch (error) {
     console.error(error);
@@ -33,7 +33,7 @@ export const createMeal = (meal) => async (dispatch) => {
   }
 };
 
-export const updatePost = (id, meal) => async (dispatch) => {
+export const updateMeal = (id, meal) => async (dispatch) => {
   try {
     const { data } = await api.updateMeal(id, meal);
 
@@ -43,11 +43,11 @@ export const updatePost = (id, meal) => async (dispatch) => {
   }
 };
 
-export const deletePost = (id) => async (dispatch) => {
+export const deleteMeal = (id) => async (dispatch) => {
   try {
     const { data } = await api.deleteMeal(id);
 
-    dispatch({ type: DELETE_MEAL, paylaod: data });
+    dispatch({ type: DELETE_MEAL, payload: data });
   } catch (error) {
     console.error(error);
   }
