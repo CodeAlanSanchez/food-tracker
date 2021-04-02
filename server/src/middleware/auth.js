@@ -1,9 +1,9 @@
 import jwt, {decode} from 'jsonwebtoken';
 
-export default async (req, res, next) => {
+export default (req, res, next) => {
   try {
-    token = req.headers?.authorization.split(' ')[1];
-
+    const token = req.headers?.authorization.split(' ')[1];
+    if (!token) return res.status(401).send('Access denied.');
     let decodedToken;
     if (token) {
       decodedToken = jwt.verify(token, process.env.JWT_SECRET);

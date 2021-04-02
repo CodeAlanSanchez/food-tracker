@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import mealRoutes from './routes/mealRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ limit: '2mb', extended: true }));
 
 app.use('/meals', mealRoutes);
+app.use('/auth', userRoutes);
 
 const { CONNECTION_URI } = process.env;
 const PORT = 5000 || process.env.PORT;
