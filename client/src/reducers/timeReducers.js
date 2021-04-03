@@ -7,7 +7,6 @@ export default (time = 'Breakfast', action) => {
     default:
       return time;
     case SET_TIME:
-      console.log(action.payload);
       return action.payload;
     case GET_TIME:
       return time;
