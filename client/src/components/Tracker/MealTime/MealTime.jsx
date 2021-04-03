@@ -36,23 +36,20 @@ const MealTime = ({ time, items }) => {
             </Typography>
           </ListItem>
         ) : null}
-        {items.map((item) => {
-          console.log(item);
-          return (
-            <div key={item._id}>
-              <ListItem>
-                <ListItemIcon>
-                  {!item.drink ? (<Fastfood />) : (<LocalDrink />)}
-                </ListItemIcon>
-                <ListItemText primary={`${item.name} (${item.amount})`} />
-                {item.calories > 0 ? <ListItemText primary={item.calories} /> : null}
-                <IconButton>
-                  <Clear />
-                </IconButton>
-              </ListItem>
-            </div>
-          );
-        })}
+        {items.map((item) => (
+          <div key={item._id}>
+            <ListItem>
+              <ListItemIcon>
+                {!item.drink ? (<Fastfood />) : (<LocalDrink />)}
+              </ListItemIcon>
+              <ListItemText primary={`${item.name} (${item.amount})`} />
+              {item.calories > 0 ? <ListItemText primary={item.calories} /> : null}
+              <IconButton>
+                <Clear />
+              </IconButton>
+            </ListItem>
+          </div>
+        ))}
       </List>
     </Paper>
   );
