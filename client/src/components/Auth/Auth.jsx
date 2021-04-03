@@ -5,7 +5,10 @@ import { LockOutlined } from '@material-ui/icons';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import useStyles from './styles';
+import { signup, signin } from '../../actions/authActions';
 
 const initialState = {
   email: '', password: '', confirmPassword: '',
@@ -13,12 +16,25 @@ const initialState = {
 
 const Auth = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [formData, setFormData] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const user = JSON.parse(localStorage.getItem('profile'));
+
+  if (user?.result?.email) {
+    history.push('/account');
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
   };
 
   const handleChange = (e) => {
@@ -26,6 +42,7 @@ const Auth = () => {
   };
 
   const switchMode = () => {
+    setShowPassword(false);
     setIsSignup((prev) => !prev);
   };
 
@@ -61,12 +78,11 @@ const Auth = () => {
                 label="Password"
                 onChange={(e) => handleChange(e)}
                 type={showPassword ? 'text' : 'password'}
-                inputProps={{
+                InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton onClick={() => setShowPassword((prev) => !prev)}>
                         {showPassword ? <Visibility /> : <VisibilityOff />}
-                        <Visibility />
                       </IconButton>
                     </InputAdornment>),
                 }}
@@ -92,12 +108,12 @@ const Auth = () => {
           </Grid>
           <Grid container spacing={1}>
             <Grid item xs={12}>
-              <Button size="large" color="primary" variant="contained" className={classes.submit} fullWidth>
+              <Button size="large" color="primary" variant="contained" type="submit" className={classes.submit} fullWidth>
                 {isSignup ? 'Sign up' : 'Sign in'}
               </Button>
             </Grid>
             <Grid item xs={12}>
-              <Button size="large" color="primary" variant="outlined" fullWidth>
+              <Button size="large" color="primary" variant="outlined" onClick={() => dispatch(signin({ email: 'guest' }, history))} fullWidth>
                 Continue as Guest
               </Button>
             </Grid>
