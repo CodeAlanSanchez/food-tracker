@@ -14,6 +14,6 @@ export default (meals = [], action) => {
     case UPDATE_MEAL:
       return meals.map((meal) => (meal._id === action.payload._id ? action.payload : meal));
     case DELETE_MEAL:
-      return action.payload;
+      return meals.filter((meal) => meal._id !== action.payload._id);
   }
 };
