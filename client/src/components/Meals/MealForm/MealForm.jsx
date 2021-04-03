@@ -3,19 +3,29 @@ import {
   Typography, TextField, Paper, Box, Button,
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createMeal } from '../../../actions/mealActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { createMeal, updateMeal } from '../../../actions/mealActions';
 
-const MealForm = () => {
+const MealForm = ({ mealId, setMealId }) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: '', amount: '', category: '', calories: '', protein: '', carbohydrates: '', fat: '', fiber: '',
   });
+  const meal = useSelector(
+    (state) => (mealId ? state.meals.find((m) => m._id === mealId) : null),
+  );
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   const clear = () => {
     setFormData({
       name: '', amount: '', category: '', calories: '', protein: '', carbohydrates: '', fat: '', fiber: '',
     });
+  };
+
+  const cancel = () => {
+    setMealId(null);
+    clear();
   };
 
   const handleChange = (e) => {
@@ -28,18 +38,44 @@ const MealForm = () => {
     }
   };
 
+  useEffect(() => {
+    if (meal) setFormData(meal);
+  }, [meal]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (mealId) {
+      dispatch(updateMeal(mealId, formData));
+      setMealId(null);
+    } else {
+      dispatch(createMeal(formData));
+    }
     clear();
-    dispatch(createMeal(formData));
   };
+
+  if (!user?.result?.email) {
+    return (
+      <Paper>
+        <Box p={3}>
+          <Typography variant="h6" aling="center">
+            Please Sign In to track and create meals.
+          </Typography>
+          <Box m={3} />
+          <Button component={Link} to="/auth" variant="contained" color="primary">
+            Sign in
+          </Button>
+        </Box>
+      </Paper>
+    );
+  }
 
   return (
     <Paper>
       <Box p={2}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <Typography variant="h5" align="center">
-            Create Meal
+            {mealId ? 'Edit Meal' : 'Create Meal'}
           </Typography>
           <TextField
             name="name"
@@ -117,9 +153,12 @@ const MealForm = () => {
             fullWidth
             required
           />
-          <Box mt={1} display="flex" justifyContent="space-between" p={2}>
-            <Button type="submit" size="small" variant="contained" color="primary">Submit</Button>
+          <Box mt={2} display="flex" justifyContent="space-between">
+            <Button type="submit" size="small" variant="contained" color="primary">{mealId ? 'Update\xa0Meal' : 'Create\xa0Meal'}</Button>
             <Button type="button" size="small" variant="text" color="secondary" onClick={() => clear()}>Clear</Button>
+            {mealId ? (
+              <Button type="button" size="small" variant="text" color="secondary" onClick={() => cancel()}>Cancel</Button>
+            ) : null}
           </Box>
         </form>
       </Box>
