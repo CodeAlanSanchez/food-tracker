@@ -13,7 +13,7 @@ API.interceptors.request.use((req) => {
 export const fetchMeals = () => API.get('/meals');
 export const fetchMeal = (id) => API.get(`/meals/${id}`);
 export const createMeal = (meal) => API.post('/meals', meal);
-export const updateMeal = (id, meal) => API.patch(`$/meals/${id}`, meal);
+export const updateMeal = (id, meal) => API.patch(`/meals/${id}`, meal);
 export const deleteMeal = (id) => API.delete(`/meals/${id}`);
 
 export const signIn = (formData) => API.post('/auth/signin', formData);
