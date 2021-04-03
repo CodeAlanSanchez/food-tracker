@@ -2,7 +2,7 @@ import {
   Grid, Box, Grow, Container, Typography,
 } from '@material-ui/core';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMeals } from '../../actions/mealActions';
 import { getTime } from '../../actions/timeActions';
@@ -15,6 +15,7 @@ const Meals = () => {
   const meals = useSelector((state) => state.meals);
   const time = useSelector((state) => state.time);
   const dispatch = useDispatch();
+  const [mealId, setMealId] = useState('');
 
   useEffect(() => {
     dispatch(getMeals());
@@ -31,11 +32,18 @@ const Meals = () => {
         </Box>
         <Grid container spacing={3} justify="space-between" alignItems="stretch">
           <Grid item xs={12} sm={4} md={3}>
-            <MealForm />
+            <MealForm setMealId={setMealId} mealId={mealId} />
           </Grid>
           <Grid item xs={12} sm={8} md={9}>
             <Grid container spacing={3}>
-              {meals.map((meal) => <Meal key={meal._id} meal={meal} time={time} />)}
+              {meals.map((meal) => (
+                <Meal
+                  key={meal._id}
+                  setMealId={setMealId}
+                  meal={meal}
+                  time={time}
+                />
+              ))}
             </Grid>
           </Grid>
         </Grid>
