@@ -3,7 +3,7 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 
-const Info = () => (
+const Info = ({ items }) => (
   <Paper position="static">
     <Box display="flex" flexDirection="column" justifyContent="left" p={2}>
       <Typography variant="h4" gutterBottom>
@@ -16,7 +16,7 @@ const Info = () => (
       </Typography>
       <List>
         <ListItem>
-          <ListItemText primary="2156" />
+          <ListItemText primary={items.reduce((acc, item) => acc + item.calories, 0)} />
         </ListItem>
       </List>
       <Typography variant="h5">
@@ -25,19 +25,19 @@ const Info = () => (
       <List>
         <ListItem>
           <ListItemText primary="Protein" />
-          <ListItemText primary="48g" align="right" />
+          <ListItemText primary={`${items.reduce((acc, item) => acc + item.protein, 0)}g`} align="right" />
         </ListItem>
         <ListItem>
           <ListItemText primary="Carbohydrates" />
-          <ListItemText primary="128g" align="right" />
+          <ListItemText primary={`${items.reduce((acc, item) => acc + item.carbohydrates, 0)}g`} align="right" />
         </ListItem>
         <ListItem>
           <ListItemText primary="Fat" />
-          <ListItemText primary="43g" align="right" />
+          <ListItemText primary={`${items.reduce((acc, item) => acc + item.fat, 0)}g`} align="right" />
         </ListItem>
         <ListItem>
           <ListItemText primary="Fiber" />
-          <ListItemText primary="24g" align="right" />
+          <ListItemText primary={`${items.reduce((acc, item) => acc + item.fiber, 0)}g`} align="right" />
         </ListItem>
       </List>
     </Box>
