@@ -8,16 +8,26 @@ import useStyles from './styles';
 
 const Navbar = () => {
   const classes = useStyles();
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   return (
     <AppBar position="static">
       <Toolbar>
         <List className={classes.navigationBar} component="nav" color="inherit">
-          <ListItem button to="/auth" component={Link}>
-            <ListItemText>
-              Sign&nbsp;in
-            </ListItemText>
-          </ListItem>
+          {!user?.result?.email
+            ? (
+              <ListItem button to="/auth" component={Link}>
+                <ListItemText>
+                  Sign&nbsp;in
+                </ListItemText>
+              </ListItem>
+            ) : (
+              <ListItem button to="/auth" component={Link}>
+                <ListItemText>
+                  Account
+                </ListItemText>
+              </ListItem>
+            )}
           <ListItem button to="/" component={Link}>
             <ListItemText>
               Tracker
