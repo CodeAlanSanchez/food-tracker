@@ -1,24 +1,40 @@
-import { Box, Typography, Container } from '@material-ui/core';
-
+import {
+  Box, Typography, Container, Button,
+} from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import React from 'react';
 import useStyles from './styles';
 
-const Account = ({ user }) => {
+const Account = () => {
   const classes = useStyles();
+  const user = JSON.parse(localStorage.getItem('profile'));
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  if (!user?.result?.email) {
+    history.push('/auth');
+  }
+
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+    history.push('/auth');
+  };
 
   return (
-    <Container container maxWidth="lg" className={classes.account}>
+    <Container maxWidth="lg" className={classes.account}>
       <Typography variant="h2" gutterBottom>
         Account
       </Typography>
       <Box mt={5} />
-      <Typography variant="h5" color="textSecondary" gutterBottom>
-        {`Name: ${user?.name}`}
-      </Typography>
       <Box mt={5} />
       <Typography variant="h5" color="textSecondary">
-        {`Email: ${user?.email}`}
+        {`Email: ${user?.result?.email}`}
       </Typography>
+      <Box mt={5} />
+      <Button color="primary" size="large" variant="contained" onClick={() => handleLogout()}>
+        Log out
+      </Button>
     </Container>
   );
 };
