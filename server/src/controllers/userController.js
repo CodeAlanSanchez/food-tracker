@@ -6,6 +6,11 @@ import jwt from 'jsonwebtoken';
 export const signin = async (req, res) => {
   const { email, password } = req.body;
   try {
+    if (email === 'guest') {
+      const token = jwt.sign({ email: 'guest', id: '6067589f421b7304d90f4a5c'}, process.env.JWT_SECRET, {expiresIn: '1h'});
+
+      return res.status(200).json({ result: { email, _id: '6067589f421b7304d90f4a5c' }, token });
+    }
     const existingUser = await User.findOne({ email });
 
     if (!existingUser) return res.status(404).json({ message: 'User doesn\'t exist.' });
