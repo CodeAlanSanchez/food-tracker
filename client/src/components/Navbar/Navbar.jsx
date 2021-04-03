@@ -1,14 +1,27 @@
 import {
   Toolbar, List, ListItem, AppBar, ListItemText,
 } from '@material-ui/core';
-
-import React from 'react';
+import decode from 'jwt-decode';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { LOGOUT } from '../../constants/actionTypes';
 import useStyles from './styles';
 
 const Navbar = () => {
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = user?.token;
+    if (token) {
+      const decodedToken = decode(token);
+
+      if (decodedToken.exp * 1000 < new Date().getTime());
+      dispatch({ type: LOGOUT });
+    }
+  }, []);
 
   return (
     <AppBar position="static">
