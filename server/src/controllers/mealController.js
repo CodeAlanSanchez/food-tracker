@@ -4,7 +4,7 @@ import Meal from '../models/mealModel.js';
 export const getMeals = async (req, res) => {
   try {
     const data = await Meal.find();
-    console.log(data);
+
     res.status(200).json(data);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -28,7 +28,6 @@ export const createMeal = async (req, res) => {
   const meal = req.body;
   try {
     const newMeal = new Meal({ ...meal, creator: req.userId });
-    console.log(newMeal);
 
     await newMeal.save();
 
