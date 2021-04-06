@@ -11,17 +11,12 @@ import { createLog } from '../../actions/logActions';
 const Tracker = () => {
   const classes = useStyles();
   const logs = useSelector((state) => state.logs);
-  const currentLog = logs.filter((log) => {
-    if
-    (new Date(log?.date) === new Date().getDay()) { return log; }
-    return '';
-  });
+  const currentLog = logs.find((log) => (new Date(log?.date).getDay() === new Date().getDay() ? log : ''));
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!currentLog?.breakfast) {
+    if (currentLog === undefined) {
       dispatch(createLog({}));
-      console.log('CREATING');
     }
   }, [dispatch]);
 
