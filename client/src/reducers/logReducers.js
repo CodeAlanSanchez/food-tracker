@@ -1,10 +1,14 @@
-export default (state = [], action) => {
+import { CREATE_LOG, GET_LOGS, UPDATE_LOG } from '../constants/actionTypes';
+
+export default (logs = [], action) => {
   switch (action.type) {
-    case 'ADD_LOG':
-      return state;
-    case 'UPDATE_LOG':
-      return state;
+    case GET_LOGS:
+      return action.payload;
+    case CREATE_LOG:
+      return [...logs, action.payload];
+    case UPDATE_LOG:
+      return logs.map((log) => (log._id === action.payload._id ? action.payload : log));
     default:
-      return state;
+      return logs;
   }
 };
