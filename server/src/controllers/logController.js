@@ -16,6 +16,7 @@ export const getLogsFromId = (req, res) => {
 
 export const createLog = (req, res) => {
   const log = req.body;
+  const { id: _id } = req.params;
   try {
     const savedLog = new Log({ log, creator: req.userId });
 
@@ -32,11 +33,13 @@ export const updateLog = (req, res) => {
   try {
     const newLog = new Log(req.body);
 
+    const log = await Log.findById(_id);
+
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('Log not found');
+
+    if (!Log.findById(_id).creator === req.userId) return res.status(401).send('Bad auth');
+
     const updatedLog = await Log.findByIdAndUpdate(_id, {_id, newLog});
-
-    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('Meal not found');
-
-    if (!Meal.findById(_id).creator === req.userId) return res.status(401).send('Bad auth');
 
     res.status(200).json(updatedLog);
   } catch (error) {
