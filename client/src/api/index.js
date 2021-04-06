@@ -19,6 +19,6 @@ export const deleteMeal = (id) => API.delete(`/meals/${id}`);
 export const signIn = (formData) => API.post('/auth/signin', formData);
 export const signUp = (formData) => API.post('/auth/signup', formData);
 
-export const fetchLogs = () => API.get('/log');
-export const createLog = (logData) => API.post('/log', logData);
+export const fetchLogs = (id) => API.get(`/log/${id}`);
+export const createLog = (id, logData) => API.post(`/log/${id}`, logData);
 export const updateLog = (id, logData) => API.patch(`/log/${id}`, logData);
