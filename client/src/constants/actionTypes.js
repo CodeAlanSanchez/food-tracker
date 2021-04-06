@@ -9,3 +9,11 @@ export const GET_TIME = 'GET_TIME';
 
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
+
+export const GET_LOGS = 'GET_LOGS';
+export const CREATE_LOG = 'CREATE_LOG';
+export const UPDATE_LOG = 'UPDATE_LOG';
+
+export const GET_MEALS = 'GET_MEALS';
+export const ADD_MEAL = 'ADD_MEAL';
+export const REMOVE_MEAL = 'REMOVE_MEAL';
