@@ -5,7 +5,10 @@ import thunk from 'redux-thunk';
 import authReducers from '../reducers/authReducers';
 import mealReducers from '../reducers/mealReducers';
 import timeReducers from '../reducers/timeReducers';
+import logReducers from '../reducers/logReducers';
 
-const reducers = combineReducers({ meals: mealReducers, time: timeReducers, auth: authReducers });
+const reducers = combineReducers({
+  meals: mealReducers, time: timeReducers, auth: authReducers, logs: logReducers,
+});
 
 export default createStore(reducers, compose(applyMiddleware(thunk)));
