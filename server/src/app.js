@@ -25,4 +25,4 @@ mongoose.connect(CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: tr
   .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
   .catch((error) => console.error(error));
 
-mongoose.set('useFindAndModify', true);
+mongoose.set('useFindAndModify', false);
