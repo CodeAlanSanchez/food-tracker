@@ -4,7 +4,7 @@ import {
 import { LockOutlined } from '@material-ui/icons';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import useStyles from './styles';
@@ -23,9 +23,11 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
   const user = JSON.parse(localStorage.getItem('profile'));
 
-  if (user?.result?.email) {
-    history.push('/account');
-  }
+  useEffect(() => {
+    if (user?.result?.email) {
+      history.push('/account');
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

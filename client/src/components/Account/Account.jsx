@@ -3,7 +3,7 @@ import {
 } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect } from 'react';
 import useStyles from './styles';
 
 const Account = () => {
@@ -12,9 +12,11 @@ const Account = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  if (!user?.result?.email) {
-    history.push('/auth');
-  }
+  useEffect(() => {
+    if (!user?.result?.email) {
+      history.push('/auth');
+    }
+  }, []);
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
