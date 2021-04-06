@@ -2,10 +2,8 @@ import {
   Grid, Box, Grow, Container, Typography,
 } from '@material-ui/core';
 
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getMeals } from '../../actions/mealActions';
-import { getTime } from '../../actions/timeActions';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Meal from './Meal/Meal';
 import MealForm from './MealForm/MealForm';
 import useStyles from './styles';
@@ -14,13 +12,7 @@ const Meals = () => {
   const classes = useStyles();
   const meals = useSelector((state) => state.meals);
   const time = useSelector((state) => state.time);
-  const dispatch = useDispatch();
   const [mealId, setMealId] = useState('');
-
-  useEffect(() => {
-    dispatch(getMeals());
-    dispatch(getTime());
-  }, [dispatch]);
 
   return (
     <Grow in>
