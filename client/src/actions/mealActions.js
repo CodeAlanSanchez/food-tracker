@@ -6,7 +6,7 @@ import {
 export const getMeals = () => async (dispatch) => {
   try {
     const { data } = await api.fetchMeals();
-    console.log(data);
+
     dispatch({ type: FETCH_MEALS, payload: data });
   } catch (error) {
     console.error(error);
