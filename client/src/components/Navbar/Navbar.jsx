@@ -18,8 +18,9 @@ const Navbar = () => {
     if (token) {
       const decodedToken = decode(token);
 
-      if (decodedToken.exp * 1000 < new Date().getTime());
-      dispatch({ type: LOGOUT });
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        dispatch({ type: LOGOUT });
+      }
     }
   }, []);
 

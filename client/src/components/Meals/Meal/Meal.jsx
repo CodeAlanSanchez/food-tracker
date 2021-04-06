@@ -71,7 +71,6 @@ const Meal = ({ meal, time, setMealId }) => {
               </Select>
               <Box display="flex" justifyContent="space-between">
                 <Button variant="contained" color="primary" size="small" mt={2}>Add</Button>
-                {console.log(user)}
                 {user?.result?._id === meal.creator ? (
                   <>
                     <Button variant="text" color="primary" size="small" mt={2} onClick={() => setMealId(meal._id)}>Edit</Button>
