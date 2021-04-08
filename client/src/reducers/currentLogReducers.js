@@ -1,13 +1,32 @@
-import { ADD_MEAL, REMOVE_MEAL, GET_MEALS } from '../constants/actionTypes';
+import {
+  ADD_BREAKFAST, ADD_LUNCH, ADD_DINNER,
+  ADD_SNACK, GET_MEAL,
+  REMOVE_BREAKFAST, REMOVE_LUNCH,
+  REMOVE_DINNER, REMOVE_SNACK,
+} from '../constants/actionTypes';
 
-export default (current = [], action) => {
+export default (current = {
+  breakfast: [], lunch: [], dinner: [], snacks: [],
+}, action) => {
   switch (action.type) {
-    case GET_MEALS:
-      return current;
-    case ADD_MEAL:
-      return [...current, action.payload];
-    case REMOVE_MEAL:
-      return current.filter((curr) => curr._id !== action.payload);
+    case GET_MEAL:
+      return action.payload;
+    case ADD_BREAKFAST:
+      return { ...current, breakfast: [...current.breakfast, action.payload] };
+    case ADD_LUNCH:
+      return { ...current, lunch: [...current.lunch, action.payload] };
+    case ADD_DINNER:
+      return { ...current, dinner: [...current.dinner, action.payload] };
+    case ADD_SNACK:
+      return { ...current, snacks: [...current.snacks, action.payload] };
+    case REMOVE_BREAKFAST:
+      return current.breakfast.filter((curr) => curr._id !== action.payload);
+    case REMOVE_LUNCH:
+      return current.lunch.filter((curr) => curr._id !== action.payload);
+    case REMOVE_DINNER:
+      return current.dinner.filter((curr) => curr._id !== action.payload);
+    case REMOVE_SNACK:
+      return current.snacks.filter((curr) => curr._id !== action.payload);
     default:
       return current;
   }
