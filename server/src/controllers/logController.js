@@ -14,7 +14,17 @@ export const getLogs = async (req, res) => {
 export const createLog = async (req, res) => {
   const log = req.body;
   try {
-    const savedLog = new Log({ ...log, creator: req.userId });
+    const existingLogs = await Log.find({ creator: req.userId });
+
+    const today = new Date();
+
+    const existingLog = existingLogs.findOne((log) => log.date.getFullYear() === today.getFullYear() &&
+    log.date.getMonth() === today.getMonth() &&
+    log.date.getDate() === today.getDate())
+
+    if (existingLog) return res.status(200).json(existingLog);
+
+    const savedLog = new Log({ ...log, creator: req.userId, date: new Date() });
 
     await savedLog.save();
 
