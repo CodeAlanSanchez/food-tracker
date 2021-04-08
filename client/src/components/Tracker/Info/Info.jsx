@@ -3,7 +3,7 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 
-const Info = ({ items }) => (
+const Info = ({ items = [] }) => (
   <Paper position="static">
     <Box display="flex" flexDirection="column" justifyContent="left" p={2}>
       <Typography variant="h4" gutterBottom>

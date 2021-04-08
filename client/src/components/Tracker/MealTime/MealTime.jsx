@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import React from 'react';
 import { setTime } from '../../../actions/timeActions';
 
-const MealTime = ({ time, items }) => {
+const MealTime = ({ time, items = [] }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,7 +29,7 @@ const MealTime = ({ time, items }) => {
         </IconButton>
       </Box>
       <List>
-        {items.length === 0 ? (
+        {!items || items.length === 0 ? (
           <ListItem>
             <Typography variant="body1" color="textSecondary">
               Empty
