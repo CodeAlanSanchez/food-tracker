@@ -2,7 +2,7 @@ import {
   Toolbar, List, ListItem, AppBar, ListItemText,
 } from '@material-ui/core';
 import decode from 'jwt-decode';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { LOGOUT } from '../../constants/actionTypes';
@@ -10,10 +10,11 @@ import useStyles from './styles';
 
 const Navbar = () => {
   const classes = useStyles();
-  const user = JSON.parse(localStorage.getItem('profile'));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('profile')));
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
