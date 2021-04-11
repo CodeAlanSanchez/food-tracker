@@ -25,8 +25,9 @@ const Meal = ({ meal, time, setMealId }) => {
     dispatch(setTime(e.target.value));
   };
 
-  const handleAdd = (e) => {
-    switch (e.target.value) {
+  const handleAdd = () => {
+    console.log(time);
+    switch (time) {
       case 'Breakfast':
         dispatch(addBreakfast(meal._id));
         break;
@@ -91,7 +92,7 @@ const Meal = ({ meal, time, setMealId }) => {
                 <MenuItem value="Snacks">Snacks</MenuItem>
               </Select>
               <Box display="flex" justifyContent="space-between">
-                <Button variant="contained" color="primary" size="small" mt={2} type="button" onClick={(e) => handleAdd(e)}>Add</Button>
+                <Button variant="contained" color="primary" size="small" mt={2} type="button" onClick={() => handleAdd()}>Add</Button>
                 {user?.result?._id === meal.creator ? (
                   <>
                     <Button type="button" variant="text" color="primary" size="small" mt={2} onClick={() => setMealId(meal._id)}>Edit</Button>
