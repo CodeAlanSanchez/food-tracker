@@ -5,6 +5,9 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import {
+  addBreakfast, addDinner, addLunch, addSnack,
+} from '../../../actions/currentLogActions';
 import { deleteMeal } from '../../../actions/mealActions';
 import { setTime } from '../../../actions/timeActions';
 import useStyles from './styles';
@@ -20,6 +23,24 @@ const Meal = ({ meal, time, setMealId }) => {
 
   const handleTimeChange = (e) => {
     dispatch(setTime(e.target.value));
+  };
+
+  const handleAdd = (e) => {
+    switch (e.target.value) {
+      case 'Breakfast':
+        dispatch(addBreakfast(meal._id));
+        break;
+      case 'Lunch':
+        dispatch(addLunch(meal._id));
+        break;
+      case 'Dinner':
+        dispatch(addDinner(meal._id));
+        break;
+      case 'Snacks':
+        dispatch(addSnack(meal._id));
+        break;
+      default:
+    }
   };
 
   return (
@@ -70,11 +91,11 @@ const Meal = ({ meal, time, setMealId }) => {
                 <MenuItem value="Snacks">Snacks</MenuItem>
               </Select>
               <Box display="flex" justifyContent="space-between">
-                <Button variant="contained" color="primary" size="small" mt={2}>Add</Button>
+                <Button variant="contained" color="primary" size="small" mt={2} type="button" onClick={(e) => handleAdd(e)}>Add</Button>
                 {user?.result?._id === meal.creator ? (
                   <>
-                    <Button variant="text" color="primary" size="small" mt={2} onClick={() => setMealId(meal._id)}>Edit</Button>
-                    <Button variant="text" color="secondary" size="small" mt={2} onClick={() => handleDelete()}>Delete</Button>
+                    <Button type="button" variant="text" color="primary" size="small" mt={2} onClick={() => setMealId(meal._id)}>Edit</Button>
+                    <Button type="button" variant="text" color="secondary" size="small" mt={2} onClick={() => handleDelete()}>Delete</Button>
                   </>
                 ) : null}
               </Box>
