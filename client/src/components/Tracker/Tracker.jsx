@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-unused-vars */
 import {
-  Box, CircularProgress, Container, Grid, Grow, Typography,
+  Box, Button, CircularProgress, Container, Grid, Grow, Typography,
 } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,10 +21,9 @@ const Tracker = () => {
   const user = JSON.stringify(localStorage.getItem('profile'));
   const history = useHistory();
 
-  useEffect(() => {
-    const today = new Date();
-    // dispatch(createLog());
-  }, []);
+  const handleSubmit = () => {
+    dispatch(createLog(currentLog));
+  };
 
   return (
     <Grow in>
@@ -34,7 +33,7 @@ const Tracker = () => {
             Log
           </Typography>
         </Box>
-        <Box mb={6} className={classes.tracker}>
+        <Box className={classes.tracker}>
           <Grid container justify="center" alignItems="stretch" spacing={0}>
             <Grid item xs={12} sm={4}>
               <Container maxWidth="sm">
@@ -45,6 +44,10 @@ const Tracker = () => {
                 <MealTime time="Dinner" items={currentLog?.dinner} />
                 <Box mb={2} />
                 <MealTime time="Snacks" items={currentLog?.snacks} />
+                <Box mb={2} />
+                <Button variant="contained" onClick={() => handleSubmit()}>
+                  Submit
+                </Button>
               </Container>
             </Grid>
             <Grid item xs={12} sm={3}>
@@ -52,6 +55,7 @@ const Tracker = () => {
             </Grid>
           </Grid>
         </Box>
+        <Box mb={6} />
       </Container>
     </Grow>
   );
