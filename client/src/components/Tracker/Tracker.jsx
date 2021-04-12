@@ -14,15 +14,14 @@ import { setLog } from '../../actions/currentLogActions';
 
 const Tracker = () => {
   const classes = useStyles();
-  const logs = useSelector((state) => state.logs);
   const currentLog = useSelector((state) => state.currentLog);
   const dispatch = useDispatch();
-  const [items, setItems] = useState([]);
-  const user = JSON.stringify(localStorage.getItem('profile'));
-  const history = useHistory();
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   const handleSubmit = () => {
+    console.log(currentLog);
     dispatch(createLog(currentLog));
+    console.log(currentLog);
   };
 
   return (
@@ -45,9 +44,12 @@ const Tracker = () => {
                 <Box mb={2} />
                 <MealTime time="Snacks" items={currentLog?.snacks} />
                 <Box mb={2} />
-                <Button variant="contained" onClick={() => handleSubmit()}>
-                  Submit
-                </Button>
+                {user?.result?.email ? (
+                  <Button variant="contained" color="primary" onClick={() => handleSubmit()}>
+                    Submit
+                  </Button>
+                )
+                  : null}
               </Container>
             </Grid>
             <Grid item xs={12} sm={3}>
