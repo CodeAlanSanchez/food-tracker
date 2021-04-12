@@ -23,18 +23,18 @@ const Tracker = () => {
 
   useEffect(() => {
     const today = new Date();
-    dispatch(createLog());
+    // dispatch(createLog());
   }, []);
 
   return (
     <Grow in>
       <Container maxWidth="xl" mb={2}>
-        <Box my={3}>
+        <Box mt={3}>
           <Typography variant="h2" align="center" gutterBottom>
             Log
           </Typography>
         </Box>
-        <Box className={classes.tracker}>
+        <Box mb={6} className={classes.tracker}>
           <Grid container justify="center" alignItems="stretch" spacing={0}>
             <Grid item xs={12} sm={4}>
               <Container maxWidth="sm">
