@@ -12,6 +12,7 @@ export default (current = {
     case CREATE_LOG:
       return action.payload;
     case ADD_BREAKFAST:
+      console.log(current);
       return { ...current, breakfast: [...current?.breakfast, action.payload] };
     case ADD_LUNCH:
       return { ...current, lunch: [...current?.lunch, action.payload] };
