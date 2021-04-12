@@ -18,7 +18,7 @@ export const createLog = async (req, res) => {
 
     const today = new Date();
 
-    const existingLog = existingLogs.findOne((log) => log.date.getFullYear() === today.getFullYear() &&
+    const existingLog = existingLogs.find((log) => log.date.getFullYear() === today.getFullYear() &&
     log.date.getMonth() === today.getMonth() &&
     log.date.getDate() === today.getDate())
 
