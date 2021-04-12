@@ -13,6 +13,7 @@ export const LOGOUT = 'LOGOUT';
 export const GET_LOGS = 'GET_LOGS';
 export const CREATE_LOG = 'CREATE_LOG';
 export const UPDATE_LOG = 'UPDATE_LOG';
+export const SET_LOG = 'SET_LOG';
 
 export const GET_MEAL = 'GET_MEAL';
 export const ADD_BREAKFAST = 'ADD_BREAKFAST';

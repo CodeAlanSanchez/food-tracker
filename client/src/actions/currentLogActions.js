@@ -1,8 +1,10 @@
 import {
   ADD_BREAKFAST, ADD_DINNER, ADD_LUNCH,
   ADD_SNACK, REMOVE_BREAKFAST,
-  REMOVE_LUNCH, REMOVE_DINNER, REMOVE_SNACK,
+  REMOVE_LUNCH, REMOVE_DINNER, REMOVE_SNACK, SET_LOG,
 } from '../constants/actionTypes';
+
+export const setLog = (log) => ({ type: SET_LOG, payload: log });
 
 export const addBreakfast = (meal) => ({ type: ADD_BREAKFAST, payload: meal });
 
