@@ -62,7 +62,7 @@ const MealTime = ({ time, items = [] }) => {
           </ListItem>
         ) : null}
         {items.map((item) => (
-          <div key={item._id}>
+          <div key={item._id + Math.random()}>
             <ListItem>
               <ListItemIcon>
                 {!item.drink ? (<Fastfood />) : (<LocalDrink />)}
