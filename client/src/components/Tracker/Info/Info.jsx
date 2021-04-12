@@ -1,21 +1,41 @@
 import {
-  Box, List, ListItem, ListItemText, Paper, Typography,
+  Box, Button, List, ListItem, ListItemText, Paper, Typography,
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const Info = () => {
   const currentLog = useSelector((state) => state.currentLog);
   const [items, setItems] = useState([]);
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
-    setItems([
-      ...currentLog.breakfast,
-      ...currentLog.lunch,
-      ...currentLog.dinner,
-      ...currentLog.snacks,
-    ]);
+    if (currentLog) {
+      setItems([
+        ...currentLog?.breakfast || [],
+        ...currentLog?.lunch || [],
+        ...currentLog?.dinner || [],
+        ...currentLog?.snacks || [],
+      ]);
+    }
   }, [currentLog]);
+
+  if (!user?.result?.email) {
+    return (
+      <Paper>
+        <Box p={3}>
+          <Typography variant="h6" aling="center">
+            Please Sign In to track and create meals.
+          </Typography>
+          <Box m={3} />
+          <Button component={Link} to="/auth" variant="contained" color="primary">
+            Sign in
+          </Button>
+        </Box>
+      </Paper>
+    );
+  }
 
   return (
     <Paper position="static">
