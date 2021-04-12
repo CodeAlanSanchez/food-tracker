@@ -15,6 +15,7 @@ import {
 const MealTime = ({ time, items = [] }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   const onTimeChange = () => {
     dispatch(setTime(time));
@@ -49,9 +50,11 @@ const MealTime = ({ time, items = [] }) => {
         <Typography variant="h4">
           {time}
         </Typography>
-        <IconButton color="primary" onClick={() => onTimeChange()}>
-          <AddCircle />
-        </IconButton>
+        {user?.result?.email ? (
+          <IconButton color="primary" onClick={() => onTimeChange()}>
+            <AddCircle />
+          </IconButton>
+        ) : null}
       </Box>
       <List>
         {!items || items.length === 0 ? (
