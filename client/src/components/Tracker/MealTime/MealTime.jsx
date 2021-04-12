@@ -8,6 +8,9 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import React from 'react';
 import { setTime } from '../../../actions/timeActions';
+import {
+  removeBreakfast, removeDinner, removeLunch, removeSnack,
+} from '../../../actions/currentLogActions';
 
 const MealTime = ({ time, items = [] }) => {
   const dispatch = useDispatch();
@@ -16,6 +19,28 @@ const MealTime = ({ time, items = [] }) => {
   const onTimeChange = () => {
     dispatch(setTime(time));
     history.push('/meals');
+  };
+
+  const handleDelete = (meal) => {
+    switch (time) {
+      case 'Breakfast':
+        dispatch(removeBreakfast(meal?._id));
+        history.push('/');
+        break;
+      case 'Lunch':
+        dispatch(removeLunch(meal?._id));
+        history.push('/');
+        break;
+      case 'Dinner':
+        dispatch(removeDinner(meal?._id));
+        history.push('/');
+        break;
+      case 'Snacks':
+        dispatch(removeSnack(meal?._id));
+        history.push('/');
+        break;
+      default:
+    }
   };
 
   return (
@@ -44,7 +69,7 @@ const MealTime = ({ time, items = [] }) => {
               </ListItemIcon>
               <ListItemText primary={`${item.name} (${item.amount})`} />
               {item.calories > 0 ? <ListItemText primary={item.calories} /> : null}
-              <IconButton>
+              <IconButton onClick={() => handleDelete(item)}>
                 <Clear />
               </IconButton>
             </ListItem>
