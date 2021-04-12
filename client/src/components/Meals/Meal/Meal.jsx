@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   addBreakfast, addDinner, addLunch, addSnack,
 } from '../../../actions/currentLogActions';
@@ -16,6 +17,7 @@ const Meal = ({ meal, time, setMealId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem('profile'));
+  const history = useHistory();
 
   const handleDelete = () => {
     dispatch(deleteMeal(meal._id));
@@ -26,19 +28,22 @@ const Meal = ({ meal, time, setMealId }) => {
   };
 
   const handleAdd = () => {
-    console.log(time);
     switch (time) {
       case 'Breakfast':
-        dispatch(addBreakfast(meal._id));
+        dispatch(addBreakfast(meal));
+        history.push('/');
         break;
       case 'Lunch':
-        dispatch(addLunch(meal._id));
+        dispatch(addLunch(meal));
+        history.push('/');
         break;
       case 'Dinner':
-        dispatch(addDinner(meal._id));
+        dispatch(addDinner(meal));
+        history.push('/');
         break;
       case 'Snacks':
-        dispatch(addSnack(meal._id));
+        dispatch(addSnack(meal));
+        history.push('/');
         break;
       default:
     }
