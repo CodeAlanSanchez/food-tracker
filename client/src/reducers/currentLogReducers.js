@@ -1,15 +1,15 @@
 import {
   ADD_BREAKFAST, ADD_LUNCH, ADD_DINNER,
-  ADD_SNACK, GET_MEAL,
+  ADD_SNACK,
   REMOVE_BREAKFAST, REMOVE_LUNCH,
-  REMOVE_DINNER, REMOVE_SNACK,
+  REMOVE_DINNER, REMOVE_SNACK, CREATE_LOG,
 } from '../constants/actionTypes';
 
 export default (current = {
   breakfast: [], lunch: [], dinner: [], snacks: [],
 }, action) => {
   switch (action.type) {
-    case GET_MEAL:
+    case CREATE_LOG:
       return action.payload;
     case ADD_BREAKFAST:
       return { ...current, breakfast: [...current.breakfast, action.payload] };
