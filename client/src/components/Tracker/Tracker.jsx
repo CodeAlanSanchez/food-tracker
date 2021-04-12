@@ -10,19 +10,26 @@ import Info from './Info/Info';
 import MealTime from './MealTime/MealTime';
 import useStyles from './styles';
 import { createLog } from '../../actions/logActions';
+import { setLog } from '../../actions/currentLogActions';
 
 const Tracker = () => {
   const classes = useStyles();
+  const logs = useSelector((state) => state.logs);
   const currentLog = useSelector((state) => state.currentLog);
   const dispatch = useDispatch();
   const [items, setItems] = useState([]);
   const user = JSON.stringify(localStorage.getItem('profile'));
   const history = useHistory();
 
+  useEffect(() => {
+    const today = new Date();
+    dispatch(createLog());
+  }, []);
+
   return (
     <Grow in>
-      <Container maxWidth="xl">
-        <Box mt={3}>
+      <Container maxWidth="xl" mb={2}>
+        <Box my={3}>
           <Typography variant="h2" align="center" gutterBottom>
             Log
           </Typography>
