@@ -1,21 +1,21 @@
 import {
   Box, List, ListItem, ListItemText, Paper, Typography,
 } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const Info = () => {
   const currentLog = useSelector((state) => state.currentLog);
-  let items = [];
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    items = [
+    setItems([
       ...currentLog.breakfast,
       ...currentLog.lunch,
       ...currentLog.dinner,
       ...currentLog.snacks,
-    ];
-  }, []);
+    ]);
+  }, [currentLog]);
 
   return (
     <Paper position="static">
