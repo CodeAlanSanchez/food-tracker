@@ -44,12 +44,12 @@ const Tracker = () => {
                 <Box mb={2} />
                 <MealTime time="Snacks" items={currentLog?.snacks} />
                 <Box mb={2} />
-                {user?.result?.email ? (
+                {/* {user?.result?.email ? (
                   <Button variant="contained" color="primary" onClick={() => handleSubmit()}>
                     Submit
                   </Button>
                 )
-                  : null}
+                  : null} */}
               </Container>
             </Grid>
             <Grid item xs={12} sm={3}>
