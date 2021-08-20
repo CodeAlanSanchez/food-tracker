@@ -41,12 +41,14 @@ export const updateMeal = async (req, res) => {
   const { id: _id } = req.params;
   try {
     const meal = new Meal(req.body);
+    
+    delete meal._id;
 
     if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('Meal not found');
 
     if (!Meal.findById(_id).creator === req.userId) return res.status(401).send('Bad auth');
     
-    const updatedMeal = await Meal.findByIdAndUpdate(_id, { ...meal }, { new: false });
+    const updatedMeal = await Meal.findByIdAndUpdate(_id, {...meal});
     
     res.status(200).json(updatedMeal);
   } catch (error) {

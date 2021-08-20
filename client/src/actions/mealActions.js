@@ -33,9 +33,9 @@ export const createMeal = (meal) => async (dispatch) => {
   }
 };
 
-export const updateMeal = (meal) => async (dispatch) => {
+export const updateMeal = (id, meal) => async (dispatch) => {
   try {
-    const { data } = await api.updateMeal(meal);
+    const { data } = await api.updateMeal(id, meal);
 
     dispatch({ type: UPDATE_MEAL, payload: data });
   } catch (error) {
