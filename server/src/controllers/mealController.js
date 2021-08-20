@@ -48,7 +48,7 @@ export const updateMeal = async (req, res) => {
 
     if (!Meal.findById(_id).creator === req.userId) return res.status(401).send('Bad auth');
     
-    const updatedMeal = await Meal.findByIdAndUpdate(_id, {...meal});
+    const updatedMeal = await Meal.findByIdAndUpdate(_id, {...meal}, { new: true });
     
     res.status(200).json(updatedMeal);
   } catch (error) {
