@@ -2,7 +2,7 @@ import { CssBaseline } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { getLogs } from './actions/logActions';
+// import { getLogs } from './actions/logActions';
 import { getMeals } from './actions/mealActions';
 import { getTime } from './actions/timeActions';
 import Account from './components/Account/Account';
@@ -17,7 +17,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getMeals());
     dispatch(getTime());
-    dispatch(getLogs());
+    // dispatch(getLogs());
   }, [dispatch]);
 
   return (
