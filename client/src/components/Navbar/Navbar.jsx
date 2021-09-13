@@ -10,11 +10,11 @@ import useStyles from './styles';
 
 const Navbar = () => {
   const classes = useStyles();
+  // eslint-disable-next-line
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('profile')));
     const token = user?.token;
     if (token) {
       const decodedToken = decode(token);
@@ -29,17 +29,17 @@ const Navbar = () => {
     <AppBar position="static">
       <Toolbar>
         <List className={classes.navigationBar} component="nav" color="inherit">
-          {!user?.result?.email
+          {user?.result?.email
             ? (
               <ListItem button to="/auth" component={Link}>
                 <ListItemText>
-                  Sign&nbsp;in
+                  Account
                 </ListItemText>
               </ListItem>
             ) : (
               <ListItem button to="/auth" component={Link}>
                 <ListItemText>
-                  Account
+                  Sign&nbsp;in
                 </ListItemText>
               </ListItem>
             )}
