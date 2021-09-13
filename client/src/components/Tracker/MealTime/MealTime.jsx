@@ -50,7 +50,7 @@ const MealTime = ({ time, items = [] }) => {
         <Typography variant="h4">
           {time}
         </Typography>
-        {user?.result?.email ? (
+        {user?.email ? (
           <IconButton color="primary" onClick={() => onTimeChange()}>
             <AddCircle />
           </IconButton>

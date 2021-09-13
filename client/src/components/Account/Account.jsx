@@ -13,7 +13,7 @@ const Account = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (!user?.result?.email) {
+    if (!user?.email) {
       history.push('/auth');
     }
   }, []);
@@ -31,10 +31,15 @@ const Account = () => {
       <Box mt={5} />
       <Box mt={5} />
       <Typography variant="h5" color="textSecondary">
-        {`Email: ${user?.result?.email}`}
+        {`Email: ${user?.email}`}
       </Typography>
       <Box mt={5} />
-      <Button color="primary" size="large" variant="contained" onClick={() => handleLogout()}>
+      <Button
+        color="primary"
+        size="large"
+        variant="contained"
+        onClick={() => handleLogout()}
+      >
         Log out
       </Button>
     </Container>

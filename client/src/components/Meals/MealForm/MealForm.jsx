@@ -54,7 +54,7 @@ const MealForm = ({ mealId, setMealId }) => {
     clear();
   };
 
-  if (!user?.result?.email) {
+  if (!user?.email) {
     return (
       <Paper>
         <Box p={3}>

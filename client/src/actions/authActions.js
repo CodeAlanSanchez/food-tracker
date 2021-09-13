@@ -5,7 +5,16 @@ export const signin = (formData, history) => async (dispatch) => {
   try {
     const { data } = await api.signIn(formData);
 
-    dispatch({ type: AUTH, payload: data });
+    console.log(data);
+
+    dispatch({
+      type: AUTH,
+      payload: {
+        _id: data.result._id,
+        email: data.result.email,
+        token: data.token,
+      },
+    });
 
     history.push('/');
   } catch (error) {

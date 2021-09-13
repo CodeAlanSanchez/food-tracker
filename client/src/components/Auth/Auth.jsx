@@ -24,7 +24,7 @@ const Auth = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
-    if (user?.result?.email) {
+    if (user?.email) {
       history.push('/account');
     }
   }, []);

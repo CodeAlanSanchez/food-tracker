@@ -16,6 +16,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const token = user?.token;
+    console.log(user);
     if (token) {
       const decodedToken = decode(token);
 
@@ -29,7 +30,7 @@ const Navbar = () => {
     <AppBar position="static">
       <Toolbar>
         <List className={classes.navigationBar} component="nav" color="inherit">
-          {user?.result?.email
+          {user?.email
             ? (
               <ListItem button to="/auth" component={Link}>
                 <ListItemText>

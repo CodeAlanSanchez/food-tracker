@@ -21,7 +21,7 @@ const Info = () => {
     }
   }, [currentLog]);
 
-  if (!user?.result?.email) {
+  if (!user?.email) {
     return (
       <Paper>
         <Box p={3}>
