@@ -20,7 +20,7 @@ const Account = () => {
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
-    history.push('/auth');
+    history.go(0);
   };
 
   return (
